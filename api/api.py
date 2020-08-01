@@ -25,7 +25,7 @@ def newStudent():
         # Auto-generated ID is the student ID
         'created_at': datetime.datetime.now(), # Timestamp
         'name': 'Abhiraj Chatterjee',
-        'college': 'Penn State University',
+        'college': 'Pennsylvania State University',
         'email': 'abhirajchatterjee@gmail.com',
         'phone': '+18148628746',
         'address': '206 Robinson Hall, University Park, State College, PA - 16802',
@@ -41,13 +41,27 @@ def newStudent():
     db.collection('students').document().set(student_data)
     return jsonify(student_data), 201
 
+# Submit a new employer
+@app.route('/api/new/employer', methods=['POST'])
+def newEmployer():
+    employer_data = {
+        # Auto-generated ID is the post ID
+        'created_at': datetime.datetime.now(), # Timestamp
+        'name': 'ACM',
+        'college': 'Pennsylvania State University',
+        'phone': '+19831002862',
+        'address': '172 Kankulia Road, Golpark, State College, PA - 16802'
+    }
+    db.collection('employers').document().set(employer_data) 
+    return jsonify(employer_data), 201  
+
 # Submit a new post
 @app.route('/api/new/post', methods=['POST'])
 def newPost():
     post_data = {
         # Auto-generated ID is the post ID
         'created_at': datetime.datetime.now(), # Timestamp
-        'employer': 'ACM',
+        'employer': 'EcxRdqJXhGULazvYlNNS',
         'location': 'State College, PA',
         'title': 'Research Assisstant',
         'description': 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In in tellus sollicitudin, commodo elit quis, condimentum dui. Integer tristique consectetur lorem, pulvinar auctor metus faucibus et. Ut consectetur elit convallis imperdiet consequat. Nullam maximus arcu id consectetur mattis. Phasellus semper diam at quam condimentum varius.',
@@ -87,8 +101,8 @@ def allPosts():
 def updatePost(postID):
     new_post_data = {
         'employees': [
-            'QatMYjFFaMeW1ysc4niY',
-            'MPNUuwNbnEfQ11H4F9xC'
+            'RGkmqiFr86A6BOatNDzG',
+            'kAXxZWWH8JNROgyeoLOG'
         ]
     }
     db.collection('posts').document(postID).update({ 'fulfilled': True })
@@ -100,17 +114,16 @@ def updatePost(postID):
 def completePost(postID):
     sent_data = [
         {
-            'id': 'QatMYjFFaMeW1ysc4niY',
+            'id': 'RGkmqiFr86A6BOatNDzG',
             'rating': 2,
             'stipend': 1240.50
         },
         {
-            'id': 'MPNUuwNbnEfQ11H4F9xC',
+            'id': 'kAXxZWWH8JNROgyeoLOG',
             'rating': 3,
             'stipend': 2500.35
         }
     ]
-
     for each in sent_data:
         student_doc = db.collection('students').document(each['id']).get().to_dict()
         new_wallet_amount = student_doc['wallet'] + each['stipend']
