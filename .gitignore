@@ -25,4 +25,4 @@ yarn-error.log*
 venv/
 .vscode/
 __pycache__/
-api/student-freelancing-services-firebase-adminsdk-h3s90-835c3d5cd4.json
+keys/

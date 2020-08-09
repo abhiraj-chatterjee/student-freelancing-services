@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Use a service account
 if not firebase_admin._apps:
-    cred = credentials.Certificate('student-freelancing-services-firebase-adminsdk-h3s90-835c3d5cd4.json')
+    cred = credentials.Certificate('keys/student-freelancing-services-firebase-adminsdk-h3s90-835c3d5cd4.json')
     firebase_admin.initialize_app(cred)
 
 db = firestore.client()
@@ -29,11 +29,7 @@ def newStudent():
         'email': 'abhirajchatterjee@gmail.com',
         'phone': '+18148628746',
         'address': '206 Robinson Hall, University Park, State College, PA - 16802',
-        'skills': [
-            'skill1',
-            'skill2',
-            'skill3'
-        ],
+        'skills': [],
         'rating': 0, 
         'wallet': 0,
         'jobs': []
@@ -58,6 +54,7 @@ def newEmployer():
 # Submit a new post
 @app.route('/api/new/post', methods=['POST'])
 def newPost():
+    
     post_data = {
         # Auto-generated ID is the post ID
         'created_at': datetime.datetime.now(), # Timestamp

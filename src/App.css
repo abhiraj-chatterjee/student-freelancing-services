@@ -1,0 +1,9 @@
+.intro {
+    background-image: linear-gradient(to right, #2193b0, #6dd5ed);
+    background-size: cover;
+    height: 100vh;
+}
+
+.first-card { 
+    width: 30rem;
+}
